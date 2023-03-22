@@ -1,11 +1,21 @@
 import React from "react";
+import { useState } from "react";
 
 
-const SearchForm = () => {
+const SearchForm = (props) => {
+
+    const [SearchText, setSearchText] = useState("");
+
+    const handleSearchForm = (e) => {
+        e.preventDefault();
+        props.searchQuery(SearchText);
+        e.currentTarget.reset();
+
+    }
 
     return (
 
-        <form class="search-form">
+        <form class="search-form" onSubmit={(e) => handleSearchForm(e)} >
             <input type="search" name="search" placeholder="Search" required />
             <button type="submit" class="search-button">
                 <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
