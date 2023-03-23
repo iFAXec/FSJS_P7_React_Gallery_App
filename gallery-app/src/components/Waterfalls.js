@@ -1,12 +1,12 @@
 import React from "react";
 
 
-const Waterfall = () => {
+const Waterfalls = () => {
     return (
         <h1>Waterfall Placeholder</h1>
     );
 }
 
-export default Waterfall;
+export default Waterfalls;
 
 

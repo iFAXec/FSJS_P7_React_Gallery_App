@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-const Sunset = () => {
+const Sunsets = () => {
 
     return (
 
@@ -11,7 +11,7 @@ const Sunset = () => {
 }
 
 
-export default Sunset
+export default Sunsets
 
 
 
