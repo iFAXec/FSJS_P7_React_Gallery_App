@@ -7,4 +7,4 @@ const Mountains = () => {
     );
 }
 
-export default Mountains;
+export default Mountains

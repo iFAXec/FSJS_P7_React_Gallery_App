@@ -7,6 +7,6 @@ const Waterfalls = () => {
     );
 }
 
-export default Waterfalls;
+export default Waterfalls
 
 

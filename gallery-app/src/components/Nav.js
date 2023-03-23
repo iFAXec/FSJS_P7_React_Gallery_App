@@ -10,7 +10,7 @@ const Nav = () => {
             <ul>
                 <li><NavLink to='/sunsets'>Sunset</NavLink></li>
                 <li><NavLink to='/mountains'>Mountains</NavLink></li>
-                <li><NavLink to='/rainbows'>Rainbow</NavLink></li>
+                <li><NavLink to='/waterfalls'>Waterfalls</NavLink></li>
             </ul>
         </nav>
 
@@ -19,6 +19,6 @@ const Nav = () => {
 }
 
 
-export default Nav;
+export default Nav
 
 

@@ -13,9 +13,9 @@ import PhotoContainer from './components/PhotoContainer';
 
 function App() {
 
-  const [Sunsets, setSunset] = useState([]);
-  const [Mountains, setMountain] = useState([]);
-  const [Waterfalls, setWaterfall] = useState([]);
+  const [Sunset, setSunset] = useState([]);
+  const [Mountain, setMountain] = useState([]);
+  const [Waterfall, setWaterfall] = useState([]);
   const [Query, setQuery] = useState("");
 
   const handleSearchQuery = (searchTerm) => {
