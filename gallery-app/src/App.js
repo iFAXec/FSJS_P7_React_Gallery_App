@@ -24,12 +24,12 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f88771aee37a38bdf3152e58f217fd03&tags=%22sunset%22&&text=${Query}&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f88771aee37a38bdf3152e58f217fd03&tags=%22sunset%22&&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setSunset(responseData.photos.photo))
       .catch(error => console.log(("Error fetching and parsing data", error)))
 
-  }, [Query]);
+  }, []);
 
 
   useEffect(() => {
@@ -60,7 +60,11 @@ function App() {
         <Route path="mountains" element={<Mountains />} />
         <Route path="waterfalls" element={<Waterfalls />} />
       </Routes>
-
+      <PhotoContainer
+        sunsetData={Sunset}
+        mountainData={Mountain}
+        waterfallData={Waterfall}
+      />
     </div>
   );
 }

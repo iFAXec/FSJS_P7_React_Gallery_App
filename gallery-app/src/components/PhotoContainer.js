@@ -1,16 +1,34 @@
 import React from "react";
+import Sunsets from "./Sunsets";
+import Mountains from "./Mountains";
 import Photo from "./Photo";
+import Waterfalls from "./Waterfalls";
 
 const PhotoContainer = (props) => {
 
-    const results = props.data;
+    const { sunsetData, mountainData, waterfallData } = props;
 
-    // let photos = results.map(photo =>
-    //     <Photo
-    //         url={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-    //         key={`${photo.id}`}
-    //     />
-    // );
+
+    let sunsetPhotos = sunsetData.map(sunsetPhoto =>
+        <Sunsets
+            url={`https://live.staticflickr.com/${sunsetPhoto.server}/${sunsetPhoto.id}_${sunsetPhoto.secret}.jpg`}
+            key={`${sunsetPhoto.id}`}
+        />
+    )
+
+    let mountainPhotos = mountainData.map(mountainPhoto =>
+        <Mountains
+            url={`https://live.staticflickr.com/${mountainPhoto.server}/${mountainPhoto.id}_${mountainPhoto.secret}.jpg`}
+            key={`${mountainPhoto.id}`}
+        />
+    )
+
+    let waterfallPhotos = waterfallData.map(waterfallPhoto =>
+        <Waterfalls
+            url={`https://live.staticflickr.com/${waterfallPhoto.server}/${waterfallPhoto.id}_${waterfallPhoto.secret}.jpg`}
+            key={`${waterfallPhoto.id}`}
+        />
+    )
 
     return (
 
@@ -19,7 +37,7 @@ const PhotoContainer = (props) => {
             <h2>Results</h2>
             <ul>
                 <li>
-                    {/* {photos} */}
+                    {sunsetPhotos}
                 </li>
 
 

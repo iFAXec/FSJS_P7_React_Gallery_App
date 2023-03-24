@@ -1,12 +1,15 @@
 import React from "react";
+import PhotoContainer from "./PhotoContainer";
 
 
 
-const Sunsets = () => {
+const Sunsets = (props) => {
+
+    const urls = props.url;
+    console.log('urls  :', props.url);
 
     return (
-
-        <h1>Sunset placeholder</h1>
+        <img src={props.url} alt="" />
     )
 }
 

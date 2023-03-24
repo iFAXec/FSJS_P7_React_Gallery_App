@@ -8,6 +8,7 @@ const Nav = () => {
 
         <nav className="main-nav">
             <ul>
+                <li><NavLink to='/'>Home</NavLink></li>
                 <li><NavLink to='/sunsets'>Sunset</NavLink></li>
                 <li><NavLink to='/mountains'>Mountains</NavLink></li>
                 <li><NavLink to='/waterfalls'>Waterfalls</NavLink></li>
