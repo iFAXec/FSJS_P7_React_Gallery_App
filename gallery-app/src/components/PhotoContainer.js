@@ -1,34 +1,18 @@
 import React from "react";
-import Sunsets from "./Sunsets";
-import Mountains from "./Mountains";
 import Photo from "./Photo";
-import Waterfalls from "./Waterfalls";
+import App from "../App";
+
 
 const PhotoContainer = (props) => {
 
+
     const { sunsetData, mountainData, waterfallData } = props;
+    console.log('sunsetData :', sunsetData);
+    console.log('mountainData :', mountainData);
+    console.log('waterfallData :', waterfallData);
 
 
-    let sunsetPhotos = sunsetData.map(sunsetPhoto =>
-        <Sunsets
-            url={`https://live.staticflickr.com/${sunsetPhoto.server}/${sunsetPhoto.id}_${sunsetPhoto.secret}.jpg`}
-            key={`${sunsetPhoto.id}`}
-        />
-    )
 
-    let mountainPhotos = mountainData.map(mountainPhoto =>
-        <Mountains
-            url={`https://live.staticflickr.com/${mountainPhoto.server}/${mountainPhoto.id}_${mountainPhoto.secret}.jpg`}
-            key={`${mountainPhoto.id}`}
-        />
-    )
-
-    let waterfallPhotos = waterfallData.map(waterfallPhoto =>
-        <Waterfalls
-            url={`https://live.staticflickr.com/${waterfallPhoto.server}/${waterfallPhoto.id}_${waterfallPhoto.secret}.jpg`}
-            key={`${waterfallPhoto.id}`}
-        />
-    )
 
     return (
 
@@ -36,9 +20,27 @@ const PhotoContainer = (props) => {
         <div className="photo-container">
             <h2>Results</h2>
             <ul>
-                <li>
-                    {sunsetPhotos}
-                </li>
+                {sunsetData.map(sunsetPhoto =>
+                    <Photo
+                        url={`https://live.staticflickr.com/${sunsetPhoto.server}/${sunsetPhoto.id}_${sunsetPhoto.secret}.jpg`}
+                        key={`${sunsetPhoto.id}`}
+
+                    />
+                )}
+
+                {mountainData.map(mountainPhoto =>
+                    <Photo
+                        url={`https://live.staticflickr.com/${mountainPhoto.server}/${mountainPhoto.id}_${mountainPhoto.secret}.jpg`}
+                        key={`${mountainPhoto.id}`}
+                    />
+                )}
+
+                {waterfallData.map(waterfallPhoto =>
+                    <Photo
+                        url={`https://live.staticflickr.com/${waterfallPhoto.server}/${waterfallPhoto.id}_${waterfallPhoto.secret}.jpg`}
+                        key={`${waterfallPhoto.id}`}
+                    />
+                )}
 
 
                 {/* Not Found */}

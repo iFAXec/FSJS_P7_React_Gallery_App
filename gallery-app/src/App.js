@@ -3,16 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //App Components
-import Sunsets from "./components/Sunsets";
-import Mountains from "./components/Mountains"
-import Waterfalls from "./components/Waterfalls"
 import Nav from "./components/Nav";
 import SearchForm from "./components/SearchForm";
 import PhotoContainer from './components/PhotoContainer';
 
 
+
 function App() {
 
+  const [Photo, setPhoto] = useState([]);
   const [Sunset, setSunset] = useState([]);
   const [Mountain, setMountain] = useState([]);
   const [Waterfall, setWaterfall] = useState([]);
@@ -24,7 +23,16 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f88771aee37a38bdf3152e58f217fd03&tags=%22sunset%22&&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${Query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json)
+      .then(responseData => setPhoto(responseData.photos.photo))
+      .catch(error => console.log(("Error fetching and parsing data", error)))
+
+  }, [Query]);
+
+
+  useEffect(() => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22sunset%22&&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setSunset(responseData.photos.photo))
       .catch(error => console.log(("Error fetching and parsing data", error)))
@@ -33,21 +41,21 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f88771aee37a38bdf3152e58f217fd03&tags=%22mountains%22&text=${Query}&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22mountains%22&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setMountain(responseData.photos.photo))
       .catch(error => console.log(("Error fetching and parsing data", error)))
 
-  }, [Query]);
+  }, []);
 
 
   useEffect(() => {
-    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f88771aee37a38bdf3152e58f217fd03&tags=%22waterfalls%22&text=${Query}&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22waterfalls%22&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setWaterfall(responseData.photos.photo))
       .catch(error => console.log(("Error fetching and parsing data", error)))
 
-  }, [Query]);
+  }, []);
 
 
   return (
@@ -55,16 +63,14 @@ function App() {
 
       <SearchForm searchQuery={handleSearchQuery} />
       <Nav />
+
       <Routes>
-        <Route path="sunsets" element={<Sunsets />} />
-        <Route path="mountains" element={<Mountains />} />
-        <Route path="waterfalls" element={<Waterfalls />} />
+        <Route path="/" element={<PhotoContainer photoData={Photo} />} />
+        <Route path="/sunsets" element={<PhotoContainer sunsetData={Sunset} />} />
+        <Route path="/mountains" element={<PhotoContainer mountainData={Mountain} />} />
+        <Route path="/waterfalls" element={<PhotoContainer waterfallData={Waterfall} />} />
       </Routes>
-      <PhotoContainer
-        sunsetData={Sunset}
-        mountainData={Mountain}
-        waterfallData={Waterfall}
-      />
+
     </div>
   );
 }
