@@ -52,7 +52,7 @@ function App() {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22sunset%22&&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setSunset(responseData.photos.photo))
-      .catch(error => console.log(("Error fetching and parsing data", error)))
+      .catch(error => console.log("Error fetching and parsing data", error))
 
   }, []);
 
@@ -61,7 +61,7 @@ function App() {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22mountains%22&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setMountain(responseData.photos.photo))
-      .catch(error => console.log(("Error fetching and parsing data", error)))
+      .catch(error => console.log("Error fetching and parsing data", error))
 
   }, []);
 
@@ -70,7 +70,7 @@ function App() {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22waterfalls%22&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => setWaterfall(responseData.photos.photo))
-      .catch(error => console.log(("Error fetching and parsing data", error)))
+      .catch(error => console.log("Error fetching and parsing data", error))
 
   }, []);
 
@@ -80,10 +80,11 @@ function App() {
 
       <SearchForm searchQuery={handleSearchQuery} />
       <Nav />
-      {(loading) ? <p> <strong>Loading...</strong></p> : <PhotoContainer data={photo} />}
+      {loading ?
+        <p> <strong>Loading...</strong></p> : <PhotoContainer data={photo} />}
 
       <Routes>
-        <Route path="/" element={<PhotoContainer data={photo} />} />
+        <Route path="/:query" element={<PhotoContainer data={photo} />} />
         <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
         <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
         <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
