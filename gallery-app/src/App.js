@@ -15,7 +15,10 @@ function App() {
   const [sunset, setSunset] = useState([]);
   const [mountain, setMountain] = useState([]);
   const [waterfall, setWaterfall] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("milkyway");
+  const [loading, setLoading] = useState(true);
+
+
 
   const handleSearchQuery = (searchTerm) => {
     setQuery(searchTerm);
@@ -24,6 +27,7 @@ function App() {
 
   useEffect(() => {
 
+    setLoading(true)
     let activeFetch = true;
 
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
@@ -31,7 +35,8 @@ function App() {
       .then(responseData => {
 
         if (activeFetch) {
-          setPhoto(responseData.photos.photo)
+          setLoading(false);
+          setPhoto(responseData.photos.photo);
         }
       })
 
@@ -75,6 +80,7 @@ function App() {
 
       <SearchForm searchQuery={handleSearchQuery} />
       <Nav />
+      {(loading) ? <p> <strong>Loading...</strong></p> : <PhotoContainer data={photo} />}
 
       <Routes>
         <Route path="/" element={<PhotoContainer data={photo} />} />
