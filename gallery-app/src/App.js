@@ -89,7 +89,7 @@ function App() {
         :
 
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
           <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
           <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
