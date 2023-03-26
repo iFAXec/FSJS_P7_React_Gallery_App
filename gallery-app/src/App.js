@@ -1,11 +1,12 @@
 import apiKey from "./config";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //App Components
 import Nav from "./components/Nav";
 import SearchForm from "./components/SearchForm";
 import PhotoContainer from './components/PhotoContainer';
+import NotFound404 from "./components/NotFound404"
 
 
 
@@ -15,8 +16,9 @@ function App() {
   const [sunset, setSunset] = useState([]);
   const [mountain, setMountain] = useState([]);
   const [waterfall, setWaterfall] = useState([]);
-  const [query, setQuery] = useState("milkyway");
+  const [query, setQuery] = useState("Plane");
   const [loading, setLoading] = useState(true);
+
 
 
 
@@ -80,15 +82,22 @@ function App() {
 
       <SearchForm searchQuery={handleSearchQuery} />
       <Nav />
-      {loading ?
-        <p> <strong>Loading...</strong></p> : <PhotoContainer data={photo} />}
+      {loading
+        ?
+        <p> <strong>Loading...</strong></p>
 
-      <Routes>
-        <Route path="/:query" element={<PhotoContainer data={photo} />} />
-        <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
-        <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
-        <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
-      </Routes>
+        :
+
+        <Routes>
+          <Route path="/" element={<PhotoContainer data={photo} />} />
+          <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
+          <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
+          <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
+          <Route path="/:searchTerm" element={<PhotoContainer data={photo} />} />
+          <Route path="*" element={<NotFound404 />} />
+        </Routes>
+
+      }
 
     </div>
   );
