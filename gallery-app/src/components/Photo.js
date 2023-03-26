@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * Initiate Photo component
+ * @param {*} props - take the prop passed from PhotoContainer * 
+ * @returns - an image element
+ */
+
 
 const Photo = (props) => {
     //console.log(props);

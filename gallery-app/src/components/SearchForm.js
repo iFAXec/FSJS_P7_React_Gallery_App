@@ -1,15 +1,29 @@
+/** 
+ * Import all the dependencies
+ */
+
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+/**
+ * 
+ * @param {*} props  - - Uses the props passed from the App.js 
+ * @returns - -the search form element
+ * Helper function to handle the submit query 
+ */
 
 const SearchForm = (props) => {
 
     const [SearchText, setSearchText] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         props.searchQuery(SearchText);
         e.currentTarget.reset();
+        let path = `/search/${SearchText}`
+        navigate(path)
     }
 
     return (

@@ -1,8 +1,9 @@
+// Import all the dependencies 
 import apiKey from "./config";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-//App Components
+//App Components 
 import Nav from "./components/Nav";
 import SearchForm from "./components/SearchForm";
 import PhotoContainer from './components/PhotoContainer';
@@ -20,11 +21,22 @@ function App() {
   const [loading, setLoading] = useState(true);
 
 
+  /**
+   *Helper function to handle search query
+   *{@param}- handleSearchQuery takes search query as a parameter
+   *set the query variable to the search term 
+   */
 
 
   const handleSearchQuery = (searchTerm) => {
     setQuery(searchTerm);
   }
+
+  /**
+     * Initiate use Effect hook 
+     * Fetch the images based on the search query
+     * Parse data to json and extract the data
+     */
 
 
   useEffect(() => {
@@ -49,6 +61,11 @@ function App() {
   }
     , [query]);
 
+  /**
+    * Initiate use effect hook 
+    * Fetch sunset images using url
+    * Parse to json and extract the data    * 
+    */
 
   useEffect(() => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22sunset%22&&per_page=24&format=json&nojsoncallback=1`)
@@ -57,6 +74,12 @@ function App() {
       .catch(error => console.log("Error fetching and parsing data", error))
 
   }, []);
+
+  /**
+    * Initiate use effect hook 
+    * Fetch mountain images using url
+    * Parse to json and extract the data
+   */
 
 
   useEffect(() => {
@@ -67,6 +90,11 @@ function App() {
 
   }, []);
 
+  /**
+    * Initiate use effect hook 
+    * Fetch waterfall images using url
+    * Parse to json and extract the data
+   */
 
   useEffect(() => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=%22waterfalls%22&per_page=24&format=json&nojsoncallback=1`)
@@ -76,6 +104,11 @@ function App() {
 
   }, []);
 
+  /**
+   * Pass the Search component 
+   * Pass the Nav component
+   * Set specific path and pass the PhotoContainer component
+   */
 
   return (
     <div className="container">
@@ -85,15 +118,13 @@ function App() {
       {loading
         ?
         <p> <strong>Loading...</strong></p>
-
         :
-
         <Routes>
-          <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="/" element={<Navigate replace to="sunsets" />} />
           <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
           <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
           <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
-          <Route path="/:searchTerm" element={<PhotoContainer data={photo} />} />
+          <Route path="/search/:searchTerm" element={<PhotoContainer data={photo} />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
 

@@ -2,6 +2,12 @@ import React from "react";
 import Photo from "./Photo";
 import NotFound from "./NotFound";
 
+/**
+ * PhotoContainer function 
+ * @param {*} props - pass the data from App.js through props
+ * @returns the image url with specific key
+ */
+
 const PhotoContainer = (props) => {
 
     const results = props.data;

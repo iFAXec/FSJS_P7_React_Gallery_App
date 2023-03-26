@@ -1,6 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+/**
+ * The Nav function initiated 
+ * @returns - a list of navigation elements
+ */
 
 const Nav = () => {
 

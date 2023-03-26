@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Initiate the Not Found 404 function
+ * @returns -  the 404 message
+ */
+
 const NotFound404 = () => {
 
     return (

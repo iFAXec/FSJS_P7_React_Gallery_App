@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * The Not Found function initiated 
+ * @returns - The Not Found message
+ */
+
 const NotFound = () => {
     return (
 
