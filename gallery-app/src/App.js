@@ -1,5 +1,5 @@
 import apiKey from "./config";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //App Components
@@ -89,7 +89,7 @@ function App() {
         :
 
         <Routes>
-          <Route path="/" element={<PhotoContainer data={photo} />} />
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/sunsets" element={<PhotoContainer data={sunset} />} />
           <Route path="/mountains" element={<PhotoContainer data={mountain} />} />
           <Route path="/waterfalls" element={<PhotoContainer data={waterfall} />} />
