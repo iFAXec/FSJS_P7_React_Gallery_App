@@ -1,6 +1,6 @@
 // Import all the dependencies 
 import apiKey from "./config";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //App Components 
