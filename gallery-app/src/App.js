@@ -64,7 +64,7 @@ function App() {
   /**
     * Initiate use effect hook 
     * Fetch sunset images using url
-    * Parse to json and extract the data    * 
+    * Parse to json and extract the data    
     */
 
   useEffect(() => {
