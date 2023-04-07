@@ -21,11 +21,13 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const location = useLocation();
+  //console.log('location :', location); 
+  //pathname is the property of location object
 
   useEffect(() => {
-    const path = location.pathname;
-    const searchQuery = path.replace("/search/", "");
-    setQuery(searchQuery);
+    const path = location.pathname; // '/search/cats'
+    const searchQuery = path.replace("/search/", ""); // 'cats'
+    setQuery(searchQuery); // update the query state with 'cats'
 
   }, [location.pathname]);
 
