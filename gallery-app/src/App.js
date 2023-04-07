@@ -1,6 +1,6 @@
 // Import all the dependencies 
 import apiKey from "./config";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //App Components 
@@ -19,6 +19,15 @@ function App() {
   const [waterfall, setWaterfall] = useState([]);
   const [query, setQuery] = useState("Plane");
   const [loading, setLoading] = useState(true);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const searchQuery = path.replace("/search/", "");
+    setQuery(searchQuery);
+
+  }, [location.pathname]);
 
 
   /**
